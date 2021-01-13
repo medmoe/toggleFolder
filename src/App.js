@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import react from 'react';
 import './App.css';
 
+class Display extends react.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isToggleOn : false
+    }
+    this.toggle = this.toggle.bind(this);
+  }
+  toggle(){
+    this.setState(state => ({
+      isToggleOn : !(this.state.isToggleOn)
+    }));
+    console.log(this.state.isToggleOn);
+  }
+  render(){
+    if(!this.state.isToggleOn){
+      return <div className="container">
+          <h2>Home</h2>
+          <ul>
+            <li>File1</li>
+            <li>File2</li>
+            <li>File3</li>
+          </ul>
+          <button onClick={this.toggle}>Toggle</button>
+      </div>
+    }else{
+      return <div className="container">
+                <h2>Home</h2>
+                <button onClick={this.toggle}>Toggle</button>
+              </div>
+              
+      
+      
+    }
+  }
+}
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Display />
     </div>
   );
 }
